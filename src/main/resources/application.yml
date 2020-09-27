@@ -1,3 +1,11 @@
+logging:
+  file:
+    name: app.log
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.vijayforvictory.demo.jpa.*: DEBUG
+    
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -11,13 +19,3 @@ spring:
   h2:
     console.enabled: true
 
-
-logging:
-  file:
-    name: app.log
-  level:
-    root: ERROR
-    org.springframework.web: ERROR
-    com.vijayforvictory.demo.jpa: DEBUG
-    com.vijayforvictory.demo.jpa.controller: DEBUG
-    com.vijayforvictory.demo.jpa.service: DEBUG

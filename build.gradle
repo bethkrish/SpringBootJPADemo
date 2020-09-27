@@ -24,8 +24,22 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '2.2'
+	
+	
 }
 
-test {
+test {	
+	
 	useJUnitPlatform()
-}
+	    
+    testLogging {
+ 
+        showStandardStreams = true
+ 		showExceptions = true
+ 		showStackTraces = true
+ 		showCauses = true
+        events "PASSED", "FAILED", "SKIPPED" 
+    }
+    
+ }
