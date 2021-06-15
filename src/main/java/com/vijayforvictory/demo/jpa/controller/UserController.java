@@ -35,16 +35,16 @@ public class UserController {
 	 * @throws JsonProcessingException
 	 */
 	@GetMapping
-	@TrackTime
+	@TrackTime(value = "/listUsers")
 	public String listUsers() throws JsonProcessingException {
-		return new ObjectMapper().writeValueAsString(userService.getUsers());		
+		return new ObjectMapper().writeValueAsString(userService.getUsers());
 	}
 	
 	/**
 	 * @param dto
 	 */
 	@PostMapping
-	@TrackTime
+	@TrackTime(value = "/postUsers")
 	public void postUsers(@RequestBody UserDto dto) {
 		userService.add(dto);
 	}
@@ -54,7 +54,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/{id}")
-	@TrackTime
+	@TrackTime(value = "/getById")
     public Optional<User> getById(@PathVariable(required = true) long id) {
         return userService.getUserById(id);
     }
@@ -63,7 +63,7 @@ public class UserController {
 	 * @param id
 	 */
     @DeleteMapping("/{id}")
-	@TrackTime
+	@TrackTime(value = "/delete")
     public void delete(@PathVariable(required = true) long id) {
     	userService.delete(id);
     }

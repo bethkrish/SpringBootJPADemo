@@ -85,15 +85,20 @@ public class LoggingAdvice {
 	 * @param joinPoint
 	 * @throws Throwable
 	 */
-	@Around("@annotation(com.vijayforvictory.demo.jpa.TrackTime)")
-	public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+//	@Around("@annotation(com.vijayforvictory.demo.jpa.TrackTime)")
+	@Around("callAt(trackTime)")
+	public Object around(ProceedingJoinPoint joinPoint, TrackTime trackTime) throws Throwable {
 		long startTime = System.currentTimeMillis();
 
 		Object object = joinPoint.proceed();
 
 		long timeTaken = System.currentTimeMillis() - startTime;
-		LOGGER.info("Time Taken by {} is {} milliseconds", joinPoint, timeTaken);
+		LOGGER.info("Time Taken by {} is {} milliseconds", trackTime.value(), timeTaken);
 		return object;
+	}
+
+	@Pointcut("@annotation(trackTime)")
+	public void callAt(TrackTime trackTime) {
 	}
 
 }
